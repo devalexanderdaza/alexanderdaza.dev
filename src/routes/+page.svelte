@@ -1,12 +1,48 @@
 <script lang="ts">
   import ContactInfo from '$lib/components/ContactInfo.svelte';
+  import { slideIn } from '$lib/transitions';
+  import { onMount } from 'svelte';
+
+  const introText = 'Hi all. I am';
+  const roles = [
+    '> Sr. Full stack Developer 💻',
+    '> Ssr. Mobile Developer 📱',
+    '> Blockchain Developer 📜',
+    '> Technical Lead 📝',
+  ];
+
+  let currentRole = 0;
+  let roleInterval: number | null = null;
+
+  onMount(() => {
+    const intro = document.querySelector('.intro p') as HTMLElement;
+    const role = document.querySelector('.role') as HTMLElement;
+    slideIn(intro, { delay: 100 });
+    slideIn(role, { delay: 200 });
+    startRoleAnimation(role);
+    writeAndEraseRoles(role);
+  });
+
+  function startRoleAnimation(role: HTMLElement) {
+    roleInterval = setInterval(() => {
+      role.textContent = roles[currentRole];
+      currentRole = (currentRole + 1) % roles.length;
+    }, 3000);
+  }
+
+  function writeAndEraseRoles(role: HTMLElement) {
+    if (role) {
+      role.textContent = roles[currentRole];
+      currentRole = (currentRole + 1) % roles.length;
+    }
+  }
 </script>
 
 <main class="main">
   <div class="intro">
-    <p>Hi all. I am</p>
-    <h1>Davide Simone</h1>
-    <p class="role">> Front-end developer</p>
+    <p>Hi all 👋. I am</p>
+    <h1>Alexander Daza 😎</h1>
+    <p class="role">> Sr. Software Engineer</p>
   </div>
   <ContactInfo />
 </main>
@@ -27,4 +63,7 @@
     color: var(--primary);
     font-size: 1.2rem;
   }
+  .intro p {
+    font-size: 1.2rem;
+  }  
 </style>
