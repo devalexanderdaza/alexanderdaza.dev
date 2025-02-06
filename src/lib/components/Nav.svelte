@@ -4,13 +4,13 @@
   
   const links = [
     { href: '/', label: '_hello' },
-    { href: '/about', label: '_about-me' },
-    { href: '/projects', label: '_projects' }
+    { href: '/about/me', label: '_about-me' },
+    { href: '/resume', label: '_resume' }
   ];
 </script>
 
 <nav>
-  <a href="/" class="logo">alexander-daza</a>
+  <a href="/" class="logo"><i class="fa-solid fa-user"></i> Alexander Daza</a>
   <div class="nav-links">
     {#each links as {href, label}}
       <a {href} 
@@ -20,7 +20,7 @@
       </a>
     {/each}
   </div>
-  <a href="#" class="contact-button" transition:fadeScale={{duration: 200}}>_contact-me</a>
+  <a href="https://wa.me/573203999858" target="_blank" class="contact-button" transition:fadeScale={{duration: 200}}>_contact-me</a>
 </nav>
 
 <style>

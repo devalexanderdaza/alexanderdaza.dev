@@ -1,6 +1,8 @@
 <script lang="ts">
  import { slide } from 'svelte/transition';
  import { createEventDispatcher } from 'svelte';
+ import { page } from '$app/state';
+ import { goto } from '$app/navigation';
 
  const dispatch = createEventDispatcher();
 
@@ -40,43 +42,59 @@
        { 
          icon: icons.folder,
          text: 'bio',
-         path: '/bio',
+         path: '/about/bio',
          isOpen: true,
          hasChildren: false,
-         isExternal: false
+         isExternal: false,
        },
        {
          icon: icons.folder,
-         text: 'interests',
-         path: '/interests', 
+         text: 'experience',
+         path: '/about/experience', 
          isOpen: false,
          hasChildren: false,
-         isExternal: false
+         isExternal: false,
        },
        {
          icon: icons.folder,
          text: 'education',
-         path: '/education',
+         path: '/about/education', 
          isOpen: false,
-         hasChildren: true,
+         hasChildren: false,
          isExternal: false,
-         items: [
-           {
-             icon: icons.school,
-             text: 'school',
-             path: '/education/school',
-             isOpen: false,
-             hasChildren: false
-           },
-           {
-             icon: icons.university, 
-             text: 'university',
-             path: '/education/university',
-             isOpen: false,
-             hasChildren: false
-           }
-         ]
+       },
+       {
+         icon: icons.folder,
+         text: 'certificates',
+         path: '/about/certificates',
+         isOpen: false,
+         hasChildren: false,
+         isExternal: false,
        }
+       /* {
+		   icon: icons.folder,
+		   text: 'education',
+		   path: '/education',
+		   isOpen: false,
+		   hasChildren: true,
+		   isExternal: false,
+		   items: [
+			   {
+				   icon: icons.school,
+				   text: 'school',
+				   path: '/education/school',
+				   isOpen: false,
+				   hasChildren: false,
+			   },
+			   {
+				   icon: icons.university,
+				   text: 'university',
+				   path: '/education/university',
+				   isOpen: false,
+				   hasChildren: false,
+			   }
+		   ],
+	   } */
      ]
    },
    {
@@ -89,7 +107,7 @@
          path: 'mailto:contacto@alexanderdaza.dev',
          isOpen: false,
          hasChildren: false,
-         isExternal: true
+         isExternal: true,
        },
        {
          icon: icons.phone,
@@ -97,7 +115,7 @@
          path: 'tel:+573212191184',
          isOpen: false,
          hasChildren: false,
-         isExternal: true
+         isExternal: true,
        },
        {
          icon: icons.whatsapp,
@@ -105,7 +123,7 @@
          path: 'https://wa.me/573203999858?text=Hola%20Alexander,%20me%20gustaría%20contactarte%20para%20más%20información.',
          isOpen: false,
          hasChildren: false,
-         isExternal: true
+         isExternal: true,
        },
        {
          icon: icons.telegram,
@@ -113,7 +131,7 @@
          path: 'https://t.me/devalexanderdaza?text=Hola%20Alexander,%20me%20gustaría%20contactarte%20para%20más%20información.',
          isOpen: false,
          hasChildren: false,
-         isExternal: true
+         isExternal: true,
        }
      ]
    }
@@ -132,7 +150,7 @@
      if(item.isExternal) {
        window.open(item.path, '_blank');
      } else {
-       dispatch('select', { path: item.path, text: item.text });
+       goto(item.path);
      }
    }
    sections = sections;
@@ -156,6 +174,7 @@
            <button 
              class="sidebar-item"
              class:has-children={item.hasChildren}
+             class:sidebar-item-active={item.path === page.url.pathname}
              on:click={() => toggleItem(item)}
            >
              {#if item.hasChildren}
@@ -170,6 +189,7 @@
                {#each item.items || [] as subItem}
                  <button 
                    class="sidebar-item sub-item"
+                   class:sidebar-item-active={subItem.path === page.url.pathname}
                    on:click={() => toggleItem(subItem)}
                  >
                    <span class="icon"><i class={subItem.icon}></i></span>
@@ -204,6 +224,12 @@
    display: flex;
    align-items: center;
    gap: 0.5rem;
+ }
+
+ .sidebar-item-active {
+   color: var(--text-highlight);
+   border-bottom: 2px solid var(--secondary);
+   background: var(--bg-dark-2);
  }
 
  .sidebar-title {

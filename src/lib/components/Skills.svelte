@@ -1,37 +1,20 @@
 <script lang="ts">
     import { slideIn } from '$lib/transitions';
-  const skillGroups = [
-    {
-      title: 'Programming languages I have learned or am learning',
-      skills: [
-        { name: 'HTML', checked: true },
-        { name: 'CSS', checked: true },
-        { name: 'JavaScript', checked: true },
-        { name: 'React', checked: false },
-        { name: 'TypeScript', checked: false }
-      ]
-    },
-    {
-      title: 'Operating Systems and other programs',
-      skills: [
-        { name: 'Windows', checked: true },
-        { name: 'Mac OS', checked: true },
-        { name: 'Linux', checked: true },
-        { name: 'Adobe Suite', checked: true },
-        { name: 'Figma', checked: true }
-      ]
-    }
-  ];
+    import { skillGroups } from '$lib/data/skills';
 </script>
 
 <aside class="skills-panel">
+    <span>Level of knowledge and experience from 1 to 10.</span>
+    <br>
+    <br>
   {#each skillGroups as group}
     <div class="skills-group">
       <h3 class="skills-title">// {group.title}</h3>
       {#each group.skills as skill, i}
         <div class="skill-item" in:slideIn={{ delay: i * 100 }}>
-          <span class="skill-checkbox" class:skill-checked={skill.checked} />
+          <span class="skill-checkbox" class:skill-checked={skill.checked}></span>
           {skill.name}
+          <span class="skill-level">{skill.level}</span>
         </div>
       {/each}
     </div>
@@ -44,6 +27,16 @@
     background: var(--panel-bg);
     border-left: 1px solid var(--border);
     padding: 1rem;
+  }
+  .skill-level {
+    margin-left: auto;
+    font-size: 0.8em;
+    opacity: 0.8;
+    background: var(--primary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: var(--border);
+    font-weight: bold;
   }
   .skills-group { margin-bottom: 2rem; }
   .skills-title {

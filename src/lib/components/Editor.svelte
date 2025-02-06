@@ -1,22 +1,37 @@
 <script lang="ts">
   const content = `/**
-* About Davide-Simone
-* Benvenuto nel mio portfolio.
+* About Alexander Daza
+* Welcome to my portfolio.
 *
-* [Diploma] Tecnico commerciale in "Amministrazione
-* Finanza e Marketing".
-* [Triennale] Scienze Politiche - Relazioni
-* Internazionali
-* [Programmazione] Da marzo 2023 sono uno studente
-* nel corso di Full Stack di DevelHope.
-* I linguaggi che ho appreso sono: HTML, CSS, SCSS,
-* JAVASCRIPT, REACT (jsx e redux), TYPESCRIPT, NODE
-* e conoscenza base di Tailwindcss e Vite.js.
+* [Education] System Engineer from CUN
+* 2018 - 2024
 *
-* [WhoIsdave] Sono una persona molto curiosa,
-* mi trovo molto bene a lavorare in team e se
-* sono davanti ad una difficoltà cerco il modo
-* migliore per trovare la soluzione più ottimale.
+* [Experience] Over 14 years of experience as Full Stack Developer,
+* specializing in web and mobile development, blockchain technologies,
+* and technical leadership. Currently working as Sr. Full Stack Developer
+* at ETRAINING SAS, developing LMS platforms for public sector entities
+* using blockchain and Web3.0 technologies.
+*
+* [Stack] Proficient in multiple languages and frameworks:
+* - Backend: NodeJS, Python, Java, GO, PHP
+* - Frontend: Angular, React, Vue, Svelte
+* - Mobile: Flutter, Swift, Kotlin
+* - Cloud: AWS, GCP, Azure, Digital Ocean
+* - Blockchain: Algorand, Smart Contracts
+*
+* [WhoIsAlex] I'm a highly motivated tech professional with
+* strong problem-solving skills and leadership experience.
+* Passionate about continuous learning and mentoring others.
+* Expert in optimizing processes and implementing innovative
+* solutions that drive business value.
+*
+* [Contact]
+* - Email: contacto@alexanderdaza.dev
+* - Phone: +57 321 219 1184
+* - WhatsApp: +57 320 399 9858
+* - Telegram: https://t.me/devalexanderdaza
+* - LinkedIn: https://www.linkedin.com/in/devalexanderdaza/
+* - GitHub: https://github.com/devalexanderdaza
 */`;
 
   $: lines = content.split('\n');
