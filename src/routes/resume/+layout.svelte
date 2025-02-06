@@ -3,6 +3,13 @@
 	import Skills from '$lib/components/Skills.svelte';
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Resume</title>
+	<meta name="description" content="Alexander Daza | Resume">
+	<meta name="keywords" content="Alexander Daza, Resume, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
+
 <div class="main-container">
 	<Sidebar />
 	<main class="content">

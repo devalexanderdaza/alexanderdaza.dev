@@ -4,6 +4,12 @@
   $: lines = workExperience.split('\n');
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Work Experience</title>
+	<meta name="description" content="Alexander Daza | Work Experience">
+	<meta name="keywords" content="Alexander Daza, Work Experience, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
 <div class="editor">
   <div class="flex">
     <div class="line-numbers">

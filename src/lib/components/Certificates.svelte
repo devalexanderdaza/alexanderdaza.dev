@@ -6,6 +6,13 @@
  let certificatesData = $state(certificates);
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Certificates</title>
+	<meta name="description" content="Alexander Daza | Certificates">
+	<meta name="keywords" content="Alexander Daza, Certificates, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
+
 <div class="certificates-grid" in:fade>
  {#each certificatesData as certificate}
    <Certificate {certificate} />

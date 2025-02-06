@@ -38,6 +38,12 @@
   }
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Home</title>
+	<meta name="description" content="Alexander Daza | Home">
+	<meta name="keywords" content="Alexander Daza, Home, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
 <main class="main">
   <div class="intro">
     <p>Hi all 👋. I am</p>

@@ -5,6 +5,13 @@
 	import { slide } from 'svelte/transition';
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Resume</title>
+	<meta name="description" content="Alexander Daza | Resume">
+	<meta name="keywords" content="Alexander Daza, Resume, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
+
 <div class="resume" in:slide>
 	<!-- Header -->
 	<section class="header">

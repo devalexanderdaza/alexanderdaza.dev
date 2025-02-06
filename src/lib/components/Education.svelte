@@ -4,6 +4,13 @@
   $: lines = education.split('\n');
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | Education</title>
+	<meta name="description" content="Alexander Daza | Education">
+	<meta name="keywords" content="Alexander Daza, Education, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
+
 <div class="editor">
   <div class="flex">
     <div class="line-numbers">

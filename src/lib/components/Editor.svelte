@@ -37,6 +37,13 @@
   $: lines = content.split('\n');
 </script>
 
+<svelte:head>
+	<title>Alexander Daza | About</title>
+	<meta name="description" content="Alexander Daza | About">
+	<meta name="keywords" content="Alexander Daza, About, Full Stack Developer, Mobile Developer, Blockchain Engineer">
+	<meta name="author" content="Alexander Daza">
+</svelte:head>
+
 <div class="editor">
   <div class="flex">
     <div class="line-numbers">
