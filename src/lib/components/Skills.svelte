@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { slideIn } from '$lib/transitions';
   const skillGroups = [
     {
       title: 'Programming languages I have learned or am learning',
@@ -27,8 +28,8 @@
   {#each skillGroups as group}
     <div class="skills-group">
       <h3 class="skills-title">// {group.title}</h3>
-      {#each group.skills as skill}
-        <div class="skill-item">
+      {#each group.skills as skill, i}
+        <div class="skill-item" in:slideIn={{ delay: i * 100 }}>
           <span class="skill-checkbox" class:skill-checked={skill.checked} />
           {skill.name}
         </div>

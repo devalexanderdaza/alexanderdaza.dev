@@ -1,12 +1,16 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition';
+  import { page } from '$app/stores';
   import Nav from '$lib/components/Nav.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import '../styles/global.css';
-
-  export const prerender = true;
-    export const ssr = false;
 </script>
 
 <Nav />
-<slot />
+{#key $page.url.pathname}
+  <main in:fade={{ duration: 300 }}>
+    <slot />
+  </main>
+{/key}
+<br />
 <Footer />

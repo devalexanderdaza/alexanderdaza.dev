@@ -41,6 +41,8 @@
   .editor {
     background: var(--code-bg);
     padding: 1rem;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
   }
   .flex {
     display: flex;
@@ -48,8 +50,9 @@
   .line-numbers {
     color: #4f5666;
     text-align: right;
-    padding-right: 1rem;
     user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
   }
   .line-numbers span {
     display: block;

@@ -24,7 +24,7 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background: var(--code-bg);
+    background: var(--bg-dark);
     border-top: 1px solid var(--border);
   }
   .social-group {

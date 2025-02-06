@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { slideIn } from '$lib/transitions';
+
   interface ContactItem {
     label: string;
     value: string;
@@ -15,8 +17,8 @@
 </script>
 
 <div class="contact-info">
-  {#each contacts as {label, value, comment}}
-    <p class="line">
+  {#each contacts as {label, value, comment}, i}
+    <p class="line" in:slideIn={{ delay: i * 150 }}>
       <span class="comment">// {comment}</span><br />
       <span class="constant">const</span> {label} = <span class="string">"{value}"</span>;
     </p>
@@ -28,7 +30,7 @@
     margin-top: 3rem;
   }
   .line {
-    margin: 0.5rem 0;
+    margin: 0.5rem 1rem;
   }
   .constant { color: #c678dd; }
   .string { color: #98c379; }

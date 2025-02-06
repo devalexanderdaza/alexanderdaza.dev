@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { fadeScale } from '$lib/transitions';
   
   const links = [
     { href: '/', label: '_hello' },
@@ -12,10 +13,14 @@
   <a href="/" class="logo">alexander-daza</a>
   <div class="nav-links">
     {#each links as {href, label}}
-      <a {href} class:active={$page.url.pathname === href}>{label}</a>
+      <a {href} 
+        class:active={$page.url.pathname === href}
+        transition:fadeScale={{duration: 200}}>
+        {label}
+      </a>
     {/each}
   </div>
-  <a href="#" class="contact-button">_contact-me</a>
+  <a href="#" class="contact-button" transition:fadeScale={{duration: 200}}>_contact-me</a>
 </nav>
 
 <style>
