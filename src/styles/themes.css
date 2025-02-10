@@ -1,0 +1,10 @@
+:root {
+  --primary: #64ffda;
+  --secondary: #ff9800;
+  --bg-gradient: linear-gradient(135deg, #0a192f 0%, #112240 50%, #1a365d 100%);
+  --border: #1e2d3d;
+  --text: #8892b0;
+  --text-highlight: #fff;
+  --code-bg: rgba(11, 25, 47, 0.7);
+  --panel-bg: rgba(30, 45, 61, 0.5);
+}
