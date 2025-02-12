@@ -22,12 +22,20 @@
 		}
 	}
 
+	function handleScroll() {
+		if (isModalOpen && (window.scrollY > 100 || window.scrollY < -100)) {
+			isModalOpen = false;
+		}
+	}
+
 	onMount(() => {
 		window.addEventListener('keydown', handleKeyDown);
+		window.addEventListener('scroll', handleScroll);
 	});
 
 	onDestroy(() => {
 		window.removeEventListener('keydown', handleKeyDown);
+		window.removeEventListener('scroll', handleScroll);
 	});
 </script>
 
@@ -58,7 +66,9 @@
 
 <!-- Modal de detalles -->
 {#if isModalOpen}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div class="modal-overlay" transition:fade on:click={() => isModalOpen = false}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<div class="modal" transition:slide on:click={(e) => e.stopPropagation()}>
 			<div class="modal-header">
 				<h2>🤓 {experience.name.split('\n')[0].toUpperCase()}</h2>
@@ -205,7 +215,11 @@
 		padding: 2rem;
 		border-radius: 10px;
 		width: 50%;
+		max-height: 80vh; /* Asegura que el modal no sea más alto que la pantalla */
+		overflow: hidden; /* Evita desbordamiento */
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		display: flex;
+		flex-direction: column;
 	}
 
 	.modal h2 {
@@ -214,8 +228,10 @@
 	}
 
 	.modal-content {
-		margin-top: 1rem;
-		line-height: 1.5;
+		flex-grow: 1; /* Permite que el contenido crezca y llene el espacio */
+		overflow-y: auto; /* Habilita scroll si el contenido es muy largo */
+		padding-right: 1rem; /* Evita que el contenido pegue al borde */
+		max-height: 60vh; /* Ajusta la altura máxima en móviles */
 	}
 
 	.close-btn {
@@ -244,6 +260,11 @@
 		.modal {
 			width: 90%;
 			padding: 1.5rem;
+			max-height: 85vh; /* Aumenta la altura en móviles */
+		}
+
+		.modal-content {
+			max-height: 70vh; /* Ajusta para permitir más scroll */
 		}
 	}
 </style>
