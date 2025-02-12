@@ -1,24 +1,37 @@
 <script lang="ts">
+	import { fade, slide } from 'svelte/transition';
+	import { onMount, onDestroy } from 'svelte';
 	import { type IExperience } from '$lib/data/index';
-	import { slide } from 'svelte/transition';
 
 	export let experience: IExperience;
+	let isModalOpen = false;
 
+	// Convierte la descripción en HTML con <p> y <br />
 	function generateResumeFromExperience(experienceDescription: string): string {
-		const experienceDescriptionArray = experienceDescription.split('\n');
-		let resume = '';
-		for (let i = 0; i < experienceDescriptionArray.length; i++) {
-			resume += `<p>${experienceDescriptionArray[i]}</p>`;
-			resume += '<br />';
-		}
-		return resume;
+		return experienceDescription.split('\n').map(line => `<p>${line}</p>`).join('<br />');
 	}
 
 	function cutString(str: string, length: number): string {
 		return str.length > length ? str.substring(0, length) + '...' : str;
 	}
+
+	// Manejo del cierre con la tecla Escape
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && isModalOpen) {
+			isModalOpen = false;
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('keydown', handleKeyDown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeyDown);
+	});
 </script>
 
+<!-- Tarjeta de experiencia -->
 <div class="certificate" transition:slide>
 	<div class="certificate-header">
 		<div class="provider-info">
@@ -27,28 +40,68 @@
 	</div>
 
 	<div class="certificate-body">
-		<span class="company">
-			💻 {experience.company.split('\n')[0].split(' · ')[0].toUpperCase()}
-		</span>
+		<span class="company">💼 {experience.company.split('\n')[0].split(' · ')[0].toUpperCase()}</span>
 		<br />
 		<br />
-		<p class="expedition">
-			📆 Work time: {experience.workDates} 🕘 {experience.company.split('\n')[0].split(' · ')[1]}
-		</p>
+		<p class="expedition">📆 Work time: {experience.workDates} 🕘 {experience.company.split('\n')[0].split(' · ')[1]}</p>
 		<div class="skills">
 			<p class="description">{cutString(experience.workDescription, 220)}</p>
-			<!-- {@html generateResumeFromExperience(experience.workDescription)} -->
 		</div>
 	</div>
 
 	<div class="certificate-footer">
-		<a href={experience.company} target="_blank" class="download-btn">
+		<button class="download-btn" on:click={() => isModalOpen = true}>
 			<i class="fa-solid fa-file-pdf"></i> View Work Experience
-		</a>
+		</button>
 	</div>
 </div>
 
+<!-- Modal de detalles -->
+{#if isModalOpen}
+	<div class="modal-overlay" transition:fade on:click={() => isModalOpen = false}>
+		<div class="modal" transition:slide on:click={(e) => e.stopPropagation()}>
+			<div class="modal-header">
+				<h2>🤓 {experience.name.split('\n')[0].toUpperCase()}</h2>
+				<p class="company">💼 {experience.company.split('\n')[0].split(' · ')[0].toUpperCase()}</p>
+				<br>
+				<p class="expedition">📅 {experience.workDates.toUpperCase()}</p>
+				<p class="expedition">🕘 {experience.company.split('\n')[0].split(' · ')[1].toUpperCase()}</p>	
+			</div>
+			<hr>
+			<div class="modal-content">
+				<h3>📋 Description:</h3>
+				<br>
+				{@html generateResumeFromExperience(experience.workDescription)}
+				<hr>
+				<span class="skills-container">{@html generateResumeFromExperience(experience.skills)}</span>
+			</div>
+			<button class="close-btn" on:click={() => isModalOpen = false}>Close</button>
+		</div>
+	</div>
+{/if}
+
 <style>
+	.modal-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 1.2rem;
+	}
+
+	hr {
+		border: 0;
+		border-top: 1px solid var(--border);
+		margin: 1rem 0;
+	}
+
+	.skills-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		text-align: center;
+		color: var(--secondary);
+	}
+
 	.certificate {
 		position: relative;
 		display: flex;
@@ -130,5 +183,67 @@
 	.download-btn:hover {
 		background: var(--primary);
 		transform: scale(1.05);
+	}
+
+	/* Modal */
+	.modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+	}
+
+	.modal {
+		background: var(--bg-dark);
+		color: var(--text);
+		padding: 2rem;
+		border-radius: 10px;
+		width: 50%;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	}
+
+	.modal h2 {
+		margin: 0 0 1rem;
+		color: var(--primary);
+	}
+
+	.modal-content {
+		margin-top: 1rem;
+		line-height: 1.5;
+	}
+
+	.close-btn {
+		margin-top: 1rem;
+		background: transparent;
+		color: var(--primary);
+		text-decoration: none;
+		border: 1px solid var(--primary);
+		border-radius: 5px;
+		padding: 0.7rem 1.5rem;
+		cursor: pointer;
+		font-weight: bold;
+		transition: all 0.2s;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.close-btn:hover {
+		background: var(--primary);
+		color: var(--bg-dark);
+		transform: scale(1.01);
+	}
+
+	@media (max-width: 768px) {
+		.modal {
+			width: 90%;
+			padding: 1.5rem;
+		}
 	}
 </style>

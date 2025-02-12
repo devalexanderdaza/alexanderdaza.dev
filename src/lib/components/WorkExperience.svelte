@@ -11,25 +11,8 @@
     <meta name="author" content="Alexander Daza">
 </svelte:head>
 
-<!-- <div class="container">
-  <h1>Experiencia Laboral</h1>
-  <div class="work-experiences">
-    {#each workExperiences as workExperience}
-      <div class="work-experience">
-        <h2>{workExperience.name.split("\n")[0]}</h2>
-        <br>
-        <p class="company">{workExperience.company.split("\n")[0]}</p>
-        <p class="dates">{workExperience.workDates}</p>
-        <p class="description">{workExperience.workDescription}</p>
-      </div>
-    {/each}
-  </div>
-</div> -->
-
 <div class="certificates-grid" in:fade>
  {#each workExperiences as experience}
-   <Work {experience} />
-   <Work {experience} />
    <Work {experience} />
  {/each}
 </div>
