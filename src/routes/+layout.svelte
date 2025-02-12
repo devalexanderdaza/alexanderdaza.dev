@@ -12,5 +12,4 @@
 		<slot />
 	</main>
 {/key}
-<br />
 <Footer />
