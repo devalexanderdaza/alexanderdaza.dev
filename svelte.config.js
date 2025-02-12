@@ -17,7 +17,11 @@ const config = {
 			fallback: 'index.html',
 			precompress: false,
 			strict: false
-		})
+		}),
+		alias: {
+			$lib: './src/lib',
+			'$lib/*': './src/lib/*'
+		}
 	}
 };
 

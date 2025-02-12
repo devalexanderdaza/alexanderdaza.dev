@@ -21,7 +21,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     background: var(--bg-dark);

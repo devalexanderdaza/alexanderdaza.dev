@@ -26,10 +26,10 @@
 </script>
 
 <div class="contact-info">
-  {#each contacts as {label, value, comment, icon}, i}
+  {#each contacts as {label, value, comment, icon, url}, i}
     <p class="line" in:slideIn={{ delay: i * 150 }}>
     <span class="comment">// <i class="{icon}"></i> {comment}</span><br />
-      <span class="constant">const</span> {label} = <span class="string" on:click={() => handleClick(value)}>"{value}"</span>;
+      <span class="constant">const</span> {label} = <a class="contact-link string" href={url} role="button" on:click={() => handleClick(value)} on:keydown={(e) => e.key === 'Enter' && handleClick(value)}>"{value}"</a>;
     </p>
   {/each}
 </div>
@@ -37,6 +37,10 @@
 <style>
   .contact-info {
     margin-top: 3rem;
+  }
+  .contact-link{
+    text-decoration: none;
+    cursor: pointer;
   }
   .line {
     margin: 0.5rem 1rem;

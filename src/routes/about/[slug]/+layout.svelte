@@ -15,7 +15,7 @@
 	.main-container {
 		display: grid;
 		grid-template-columns: 250px 1fr;
-		min-height: calc(100vh - 120px);
+		/* min-height: calc(100vh - 120px); */
 	}
 	.content {
 		display: grid;
