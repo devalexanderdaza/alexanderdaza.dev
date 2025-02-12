@@ -188,6 +188,7 @@
 		text-decoration: none;
 		font-weight: bold;
 		transition: all 0.2s;
+		cursor: pointer;
 	}
 
 	.download-btn:hover {

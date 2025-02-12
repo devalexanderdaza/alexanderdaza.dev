@@ -10,13 +10,13 @@
 </script>
 
 <nav>
-  <a href="/" class="logo"><i class="fa-solid fa-user"></i> Alexander Daza</a>
+  <a href="/" class="logo">😎 Alexander Daza</a>
   <div class="nav-links">
     {#each links as {href, label}}
       <a {href} 
         class:active={$page.url.pathname === href}
         transition:fadeScale={{duration: 200}}>
-        {label}
+        {$page.url.pathname === href ? '👉' : '' } {label}
       </a>
     {/each}
   </div>
