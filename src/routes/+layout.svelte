@@ -1,4 +1,5 @@
 <script lang="ts">
+	export const prerender = true;
 	import { fade } from 'svelte/transition';
 	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
